@@ -31,35 +31,18 @@ A aplicação disponibiliza:
 
 # 🏗️ Arquitetura do sistema
 
-A aplicação é composta por quatro componentes principais:
+Este serviço faz parte de uma arquitetura composta por:
 
-```text
-┌──────────────────────────────┐
-│         Navegador            │
-│                              │
-│  HTML + CSS + JavaScript     │
-└──────────────┬───────────────┘
-               │
-               │ HTTP / GraphQL
-               ▼
-┌──────────────────────────────┐       ┌────────────┐
-│             BFF              │ REST  │            │
-│       Flask + Ariadne        │◄─────►│   ViaCEP   │
-│          :5002               │       │            │
-└──────────────┬───────────────┘       └────────────┘
-        REST   │   REST
-       ┌───────┴────────────┐
-       │                    │
-       ▼                    ▼
-┌──────────────┐ REST ┌──────────────────┐
-│   Patient    │◄────►│    Scheduling    │
-│   Backend    │      │     Backend      │
-│    :5000     │      │      :5000       │
-└──────────────┘      └──────────────────┘
-        │                      │
-        ▼                      ▼  
-  Banco de dados         Banco de dados
-```
+* [**Frontend** — interface web (docker-composer)](https://github.com/maloisio/mvp2-healthcare-frontend)
+* [**BFF (Backend for Frontend)** — API GraphQL que centraliza as requisições do frontend](https://github.com/maloisio/mvp2-bff)
+* [**Patient Backend** — gerenciamento de pacientes](https://github.com/maloisio/mvp2-patient-backend)
+* [**Scheduling Backend** — gerenciamento de consultas](https://github.com/maloisio/mvp2-scheduling-backend)
+
+
+
+<img width="653" height="695" alt="Image" src="https://github.com/user-attachments/assets/c8e12a68-10b6-4113-8dce-47e634f34e30" />
+
+
 
 O frontend acessa o BFF através de:
 
@@ -69,7 +52,7 @@ http://localhost:5002/graphql
 
 O BFF realiza as chamadas internas para os backends utilizando a rede Docker.
 
-# ️ 🚀 Como executar---
+# ️ 🚀 Como executar
 
 ## 🐳 Execução com Docker Compose
 
@@ -132,10 +115,10 @@ meu-projeto/
 Clone os quatro repositórios para a mesma pasta:
 
 ```bash
-git clone <URL_DO_REPOSITORIO_FRONTEND>
-git clone <URL_DO_REPOSITORIO_PATIENT_BACKEND>
-git clone <URL_DO_REPOSITORIO_SCHEDULING_BACKEND>
-git clone <URL_DO_REPOSITORIO_BFF>
+git clone https://github.com/maloisio/mvp2-healthcare-frontend.git
+git clone https://github.com/maloisio/mvp2-patient-backend.git
+git clone https://github.com/maloisio/mvp2-scheduling-backend.git
+git clone https://github.com/maloisio/mvp2-bff.git
 ```
 
 Depois entre no diretório do frontend:
