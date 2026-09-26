@@ -1,0 +1,535 @@
+
+body {
+    background-color: #f4f6f9;
+}
+
+h1 {
+    font-size: 1.75rem;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.card-header {
+    font-weight: 600;
+    background-color: #fff;
+}
+
+
+/* ============================================================
+   CARDS DE PACIENTES
+   ============================================================ */
+
+.patient-card {
+    background: #fff;
+    border: 1px solid #dee2e6;
+    border-radius: 10px;
+    padding: 1rem;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+    border-left: 4px solid #0d6efd;
+    height: 100%;
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.patient-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.patient-card h5 {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.patient-card .patient-field {
+    font-size: 0.875rem;
+    color: #495057;
+    margin-bottom: 0.25rem;
+}
+
+.patient-card .patient-field strong {
+    color: #212529;
+}
+
+.patient-card .badge-appointments {
+    font-size: 0.75rem;
+}
+
+
+/* ============================================================
+   CALENDÁRIO
+   ============================================================ */
+
+.calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.calendar-weekdays div {
+    min-width: 0;
+
+    text-align: center;
+
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.02em;
+
+    color: #ffffff;
+
+    background: linear-gradient(
+        135deg,
+        #0d6efd,
+        #4f8dfd
+    );
+
+    padding: 10px 4px;
+
+    border-radius: 8px;
+}
+
+
+/* ============================================================
+   GRADE DOS DIAS
+   ============================================================ */
+
+.calendar-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(7, minmax(0, 1fr));
+
+    gap: 8px;
+
+    width: 100%;
+}
+
+
+/* ============================================================
+   QUADRADO DO DIA
+   ============================================================ */
+
+.calendar-day {
+    position: relative;
+
+    min-width: 0;
+    height: 130px;
+
+    padding: 9px;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+
+    border: 1px solid #dce3ec;
+    border-radius: 10px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f8fbff
+        );
+
+    box-shadow:
+        0 2px 5px rgba(
+            13,
+            110,
+            253,
+            0.05
+        );
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        border-color 0.15s ease,
+        background 0.15s ease;
+}
+
+
+/* ============================================================
+   HOVER DO DIA
+   ============================================================ */
+
+.calendar-day:hover {
+    transform: translateY(-2px);
+
+    border-color: #0d6efd;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #eef6ff
+        );
+
+    box-shadow:
+        0 6px 16px rgba(
+            13,
+            110,
+            253,
+            0.15
+        );
+}
+
+
+/* ============================================================
+   DIAS VAZIOS
+   ============================================================ */
+
+.calendar-day.empty {
+    background:
+        linear-gradient(
+            145deg,
+            #f3f6f9,
+            #eef1f5
+        );
+
+    border-color: #e3e7ec;
+
+    cursor: default;
+
+    box-shadow: none;
+
+    opacity: 0.65;
+}
+
+.calendar-day.empty:hover {
+    transform: none;
+
+    border-color: #e3e7ec;
+
+    background:
+        linear-gradient(
+            145deg,
+            #f3f6f9,
+            #eef1f5
+        );
+
+    box-shadow: none;
+}
+
+
+/* ============================================================
+   NÚMERO DO DIA
+   ============================================================ */
+
+.calendar-day-number {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 28px;
+    height: 28px;
+
+    margin-bottom: 6px;
+
+    border-radius: 50%;
+
+    font-weight: 700;
+    font-size: 0.85rem;
+
+    color: #344054;
+
+    background-color: #eef2f7;
+}
+
+
+/* ============================================================
+   DIA ATUAL
+   ============================================================ */
+
+.calendar-day.today {
+    border: 2px solid #0d6efd;
+
+    background:
+        linear-gradient(
+            145deg,
+            #eef6ff,
+            #ffffff
+        );
+
+    box-shadow:
+        0 4px 14px rgba(
+            13,
+            110,
+            253,
+            0.18
+        );
+}
+
+.calendar-day.today .calendar-day-number {
+    color: #ffffff;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0d6efd,
+            #4f8dfd
+        );
+}
+
+
+/* ============================================================
+   DIA SELECIONADO
+   ============================================================ */
+
+.calendar-day.selected {
+    border-color: #0d6efd;
+
+    background:
+        linear-gradient(
+            145deg,
+            #eaf3ff,
+            #ffffff
+        );
+
+    box-shadow:
+        0 0 0 3px rgba(
+            13,
+            110,
+            253,
+            0.10
+        );
+}
+
+
+/* ============================================================
+   NOMES DOS PACIENTES
+   ============================================================ */
+
+.calendar-appointment {
+    display: block;
+
+    width: 100%;
+    min-width: 0;
+
+    box-sizing: border-box;
+
+    margin-top: 4px;
+    padding: 4px 6px;
+
+    border: 1px solid #0d6efd;
+    border-radius: 5px;
+
+    background: transparent;
+
+    color: #212529;
+
+    font-size: 0.72rem;
+    font-weight: 600;
+
+    line-height: 1.3;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+
+/* ============================================================
+   HOVER NO NOME
+   ============================================================ */
+
+.calendar-appointment:hover {
+    background: #eaf3ff;
+
+    border-color: #0d6efd;
+
+    transform: translateX(1px);
+}
+
+
+/* ============================================================
+   MAIS CONSULTAS
+   ============================================================ */
+
+.calendar-more {
+    display: block;
+
+    width: 100%;
+    box-sizing: border-box;
+
+    margin-top: 3px;
+
+    color: #0d6efd;
+
+    font-size: 0.68rem;
+    font-weight: 600;
+
+    line-height: 1.2;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ============================================================
+   DETALHES DAS CONSULTAS
+   ============================================================ */
+
+.calendar-detail-card {
+    border: none;
+
+    border-left: 4px solid #0d6efd;
+
+    border-radius: 10px;
+
+    padding: 14px;
+
+    margin-bottom: 10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f5f9ff
+        );
+
+    box-shadow:
+        0 2px 8px rgba(
+            0,
+            0,
+            0,
+            0.07
+        );
+}
+
+
+/* ============================================================
+   RESPONSIVO - TABLET
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+    .calendar-weekdays,
+    .calendar-grid {
+        gap: 4px;
+    }
+
+
+    .calendar-weekdays div {
+        padding: 7px 2px;
+
+        font-size: 0.7rem;
+
+        border-radius: 6px;
+    }
+
+
+    .calendar-day {
+        height: 85px;
+
+        padding: 5px;
+
+        border-radius: 7px;
+    }
+
+
+    .calendar-day-number {
+        width: 23px;
+        height: 23px;
+
+        font-size: 0.7rem;
+
+        margin-bottom: 3px;
+    }
+
+
+    .calendar-appointment {
+        padding: 2px 4px;
+
+        border: 1px solid #b8d4f8;
+
+        border-left: 2px solid #0d6efd;
+
+        border-radius: 4px;
+
+        font-size: 0.58rem;
+
+        margin-top: 3px;
+    }
+
+
+    .calendar-more {
+        font-size: 0.55rem;
+
+        padding: 1px 4px;
+    }
+}
+
+
+/* ============================================================
+   RESPONSIVO - CELULAR
+   ============================================================ */
+
+@media (max-width: 480px) {
+
+    .calendar-weekdays,
+    .calendar-grid {
+        gap: 2px;
+    }
+
+
+    .calendar-day {
+        height: 68px;
+
+        padding: 3px;
+
+        border-radius: 5px;
+    }
+
+
+    .calendar-day-number {
+        width: 20px;
+        height: 20px;
+
+        font-size: 0.62rem;
+
+        margin-bottom: 2px;
+    }
+
+
+    .calendar-appointment {
+        padding: 1px 3px;
+
+        border: 1px solid #b8d4f8;
+
+        border-left: 2px solid #0d6efd;
+
+        border-radius: 4px;
+
+        font-size: 0.48rem;
+
+        margin-top: 2px;
+    }
+
+
+    .calendar-more {
+        font-size: 0.48rem;
+
+        padding: 1px 3px;
+    }
+}
+
+
+/* ============================================================
+   MENSAGENS
+   ============================================================ */
+
+#form-message.text-success,
+#form-message.text-danger,
+#search-message.text-success,
+#search-message.text-danger,
+#edit-message.text-success,
+#edit-message.text-danger {
+    font-weight: 500;
+}

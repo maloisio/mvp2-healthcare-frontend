@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestão de Pacientes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    >
+
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+    <div class="container py-4">
+
+        <h1 class="mb-4">
+            Gestão de Pacientes
+        </h1>
+
+
+        <!-- ====================================================
+             BUSCA POR ID
+             ==================================================== -->
+
+        <div class="card mb-4">
+
+            <div class="card-header">
+                Buscar Paciente por ID
+            </div>
+
+            <div class="card-body">
+
+                <div class="input-group">
+
+                    <input
+                        type="number"
+                        class="form-control"
+                        id="input-search-id"
+                        placeholder="Digite o ID do paciente"
+                    >
+
+                    <button
+                        id="btn-search"
+                        class="btn btn-outline-primary">
+                        Buscar
+                    </button>
+
+                    <button
+                        id="btn-clear-search"
+                        class="btn btn-outline-secondary">
+                        Limpar
+                    </button>
+
+                </div>
+
+                <div
+                    id="search-message"
+                    class="mt-3">
+                </div>
+
+
+                <div
+                    id="search-result"
+                    class="mt-3 d-none">
+
+                    <table class="table table-bordered mb-0">
+
+                        <tbody>
+
+                            <tr>
+                                <th style="width: 160px;">
+                                    ID
+                                </th>
+
+                                <td id="result-id"></td>
+                            </tr>
+
+                            <tr>
+                                <th>
+                                    Nome
+                                </th>
+
+                                <td id="result-name"></td>
+                            </tr>
+
+                            <tr>
+                                <th>
+                                    Nascimento
+                                </th>
+
+                                <td id="result-birth-date"></td>
+                            </tr>
+
+                            <tr>
+                                <th>
+                                    CPF
+                                </th>
+
+                                <td id="result-tax-id"></td>
+                            </tr>
+
+                            <tr>
+                                <th>
+                                    Telefone
+                                </th>
+
+                                <td id="result-phone"></td>
+                            </tr>
+
+                            <tr>
+                                <th>
+                                    E-mail
+                                </th>
+
+                                <td id="result-email"></td>
+                            </tr>
+
+                            <tr>
+                                <th>
+                                    Endereço
+                                </th>
+
+                                <td id="result-address"></td>
+                            </tr>
+
+                            <tr>
+                                <th>
+                                    Profissão
+                                </th>
+
+                                <td id="result-profession"></td>
+                            </tr>
+
+                            <tr>
+                                <th>
+                                    Consultas
+                                </th>
+
+                                <td id="result-appointments"></td>
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ====================================================
+             FORMULÁRIO DE CADASTRO
+             ==================================================== -->
+
+        <div class="card mb-4">
+
+            <div class="card-header">
+                Novo Paciente
+            </div>
+
+            <div class="card-body">
+
+                <form id="form-patient">
+
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+                                Nome *
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="input-name"
+                                placeholder="Maria da Silva"
+                                maxlength="100"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="col-md-3">
+
+                            <label class="form-label">
+                                Data de nascimento *
+                            </label>
+
+                            <input
+                                type="date"
+                                class="form-control"
+                                id="input-birth-date"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="col-md-3">
+
+                            <label class="form-label">
+                                CPF *
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="input-tax-id"
+                                placeholder="12345678900"
+                                maxlength="14"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="col-md-3">
+
+                            <label class="form-label">
+                                Telefone *
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="input-phone"
+                                placeholder="41999999999"
+                                maxlength="20"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <label class="form-label">
+                                E-mail *
+                            </label>
+
+                            <input
+                                type="email"
+                                class="form-control"
+                                id="input-email"
+                                placeholder="maria.silva@email.com"
+                                maxlength="100"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="col-md-3">
+
+                            <label class="form-label">
+                                CEP *
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="input-cep"
+                                maxlength="9"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="col-md-5">
+
+                            <label class="form-label">
+                                Logradouro *
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="input-logradouro"
+                                maxlength="200"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <label class="form-label">
+                                Complemento
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="input-complemento"
+                                maxlength="100"
+                            >
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <label class="form-label">
+                                Bairro *
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="input-bairro"
+                                maxlength="100"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="col-md-4">
+
+                            <label class="form-label">
+                                Cidade *
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="input-localidade"
+                                maxlength="100"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="col-md-2">
+
+                            <label class="form-label">
+                                UF *
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="input-uf"
+                                maxlength="2"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="col-md-3">
+
+                            <label class="form-label">
+                                Profissão *
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="input-profession"
+                                placeholder="Engenheira"
+                                maxlength="200"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary mt-3">
+
+                        Adicionar Paciente
+
+                    </button>
+
+                </form>
+
+
+                <div
+                    id="form-message"
+                    class="mt-3">
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ====================================================
+             LISTAGEM
+             ==================================================== -->
+
+        <div class="card">
+
+            <div class="card-header d-flex justify-content-between align-items-center flex-wrap gap-2">
+
+                <span>
+                    Pacientes Cadastrados
+                </span>
+
+
+                <div class="d-flex gap-2">
+
+                    <input
+                        type="text"
+                        class="form-control form-control-sm"
+                        id="input-filter-name"
+                        placeholder="Filtrar por nome..."
+                    >
+
+
+                    <button
+                        id="btn-calendar"
+                        class="btn btn-sm btn-outline-primary">
+
+                        📅 Calendário
+
+                    </button>
+
+
+                    <button
+                        id="btn-refresh"
+                        class="btn btn-sm btn-outline-secondary">
+
+                        Atualizar
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="card-body">
+
+                <div
+                    id="loading-indicator"
+                    class="text-center py-4 d-none">
+
+                    <div
+                        class="spinner-border text-primary"
+                        role="status">
+                    </div>
+
+                    <p class="mt-2 text-muted">
+                        Carregando...
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="empty-message"
+                    class="text-center text-muted py-4 d-none">
+
+                    Nenhum paciente encontrado.
+
+                </div>
+
+
+                <div
+                    id="cards-container"
+                    class="row g-3">
+
+                    <!-- cards inseridos via JS -->
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================================
+         MODAL DE EDIÇÃO
+         ======================================================== -->
+
+    <div
+        class="modal fade"
+        id="modal-edit"
+        tabindex="-1"
+        aria-hidden="true">
+
+        <div class="modal-dialog modal-lg">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5
+                        class="modal-title"
+                        id="modal-edit-title">
+
+                        Editar Paciente
+
+                    </h5>
+
+
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Fechar">
+                    </button>
+
+                </div>
+
+
+                <div class="modal-body">
+
+                    <form id="form-edit-patient">
+
+                        <input
+                            type="hidden"
+                            id="edit-patient-id"
+                        >
+
+
+                        <div class="row g-3">
+
+                            <div class="col-md-6">
+
+                                <label class="form-label">
+                                    Nome *
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="edit-name"
+                                    maxlength="100"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="col-md-3">
+
+                                <label class="form-label">
+                                    Data de nascimento
+                                </label>
+
+                                <input
+                                    type="date"
+                                    class="form-control"
+                                    id="edit-birth-date"
+                                >
+
+                            </div>
+
+
+                            <div class="col-md-3">
+
+                                <label class="form-label">
+                                    CPF
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="edit-tax-id"
+                                    maxlength="14"
+                                >
+
+                            </div>
+
+
+                            <div class="col-md-3">
+
+                                <label class="form-label">
+                                    Telefone
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="edit-phone"
+                                    maxlength="20"
+                                >
+
+                            </div>
+
+
+                            <div class="col-md-5">
+
+                                <label class="form-label">
+                                    E-mail
+                                </label>
+
+                                <input
+                                    type="email"
+                                    class="form-control"
+                                    id="edit-email"
+                                    maxlength="100"
+                                >
+
+                            </div>
+
+
+                            <div class="col-md-4">
+
+                                <label class="form-label">
+                                    CEP
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="edit-cep"
+                                    maxlength="9"
+                                >
+
+                            </div>
+
+
+                            <div class="col-md-8">
+
+                                <label class="form-label">
+                                    Logradouro
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="edit-logradouro"
+                                    maxlength="200"
+                                >
+
+                            </div>
+
+
+                            <div class="col-md-4">
+
+                                <label class="form-label">
+                                    Complemento
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="edit-complemento"
+                                    maxlength="200"
+                                >
+
+                            </div>
+
+
+                            <div class="col-md-4">
+
+                                <label class="form-label">
+                                    Bairro
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="edit-bairro"
+                                    maxlength="100"
+                                >
+
+                            </div>
+
+
+                            <div class="col-md-5">
+
+                                <label class="form-label">
+                                    Cidade
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="edit-localidade"
+                                    maxlength="100"
+                                >
+
+                            </div>
+
+
+                            <div class="col-md-3">
+
+                                <label class="form-label">
+                                    UF
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="edit-uf"
+                                    maxlength="2"
+                                >
+
+                            </div>
+
+
+                            <div class="col-md-5">
+
+                                <label class="form-label">
+                                    Profissão
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="edit-profession"
+                                    maxlength="100"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            id="edit-message"
+                            class="mt-3">
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+
+                        Cancelar
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        id="btn-save-edit">
+
+                        <span
+                            id="btn-save-edit-spinner"
+                            class="spinner-border spinner-border-sm d-none">
+                        </span>
+
+                        Salvar Alterações
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================================
+         MODAL DE CONSULTAS
+         ======================================================== -->
+
+    <div
+        class="modal fade"
+        id="modal-appointments"
+        tabindex="-1"
+        aria-hidden="true">
+
+        <div class="modal-dialog modal-lg">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5
+                        class="modal-title"
+                        id="modal-appointments-title">
+
+                        Consultas do Paciente
+
+                    </h5>
+
+
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Fechar">
+                    </button>
+
+                </div>
+
+
+                <div class="modal-body">
+
+                    <div
+                        id="appointments-list"
+                        class="mb-4">
+                    </div>
+
+
+                    <hr>
+
+
+                    <h6>
+                        Nova Consulta
+                    </h6>
+
+
+                    <input
+                        type="hidden"
+                        id="appointment-patient-id"
+                    >
+
+
+                    <div class="row g-3">
+
+                        <div class="col-md-4">
+
+                            <label class="form-label">
+                                Data *
+                            </label>
+
+                            <input
+                                type="date"
+                                class="form-control"
+                                id="appointment-date"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="col-md-8">
+
+                            <label class="form-label">
+                                Motivo *
+                            </label>
+
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="appointment-reason"
+                                placeholder="Consulta de rotina"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="col-12">
+
+                            <label class="form-label">
+                                Observações
+                            </label>
+
+                            <textarea
+                                class="form-control"
+                                id="appointment-notes"
+                                rows="2"
+                                placeholder="Paciente relatou dor leve">
+                            </textarea>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        id="appointment-message"
+                        class="mt-3">
+                    </div>
+
+                </div>
+
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+
+                        Fechar
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        id="btn-save-appointment">
+
+                        <span
+                            id="btn-save-appointment-spinner"
+                            class="spinner-border spinner-border-sm d-none">
+                        </span>
+
+                        Adicionar Consulta
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================================
+         MODAL DE CALENDÁRIO
+         ======================================================== -->
+
+    <div
+        class="modal fade"
+        id="modal-calendar"
+        tabindex="-1"
+        aria-hidden="true">
+
+        <div class="modal-dialog modal-xl">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title">
+                        📅 Calendário de Consultas
+                    </h5>
+
+
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Fechar">
+                    </button>
+
+                </div>
+
+
+                <div class="modal-body">
+
+                    <div
+                        id="calendar-loading"
+                        class="text-center py-4 d-none">
+
+                        <div
+                            class="spinner-border text-primary"
+                            role="status">
+                        </div>
+
+                        <p class="mt-2 text-muted">
+                            Carregando consultas...
+                        </p>
+
+                    </div>
+
+
+                    <div id="calendar-content">
+
+                        <!-- Navegação -->
+
+                        <div
+                            class="d-flex justify-content-between align-items-center mb-3">
+
+                            <button
+                                type="button"
+                                class="btn btn-outline-secondary"
+                                id="btn-calendar-prev">
+
+                                ‹
+
+                            </button>
+
+
+                            <h4
+                                id="calendar-month-title"
+                                class="mb-0 text-capitalize">
+                            </h4>
+
+
+                            <button
+                                type="button"
+                                class="btn btn-outline-secondary"
+                                id="btn-calendar-next">
+
+                                ›
+
+                            </button>
+
+                        </div>
+
+
+                        <!-- Semana -->
+
+                        <div
+                            class="calendar-grid calendar-weekdays">
+
+                            <div>Dom</div>
+                            <div>Seg</div>
+                            <div>Ter</div>
+                            <div>Qua</div>
+                            <div>Qui</div>
+                            <div>Sex</div>
+                            <div>Sáb</div>
+
+                        </div>
+
+
+                        <!-- Dias -->
+
+                        <div
+                            id="calendar-days"
+                            class="calendar-grid">
+                        </div>
+
+
+                        <!-- Detalhes -->
+
+                        <div
+                            id="calendar-day-details"
+                            class="mt-4">
+
+                            <div
+                                class="alert alert-light border mb-0">
+
+                                <strong>
+                                    Selecione um dia
+                                </strong>
+
+                                <br>
+
+                                Clique em um dia do calendário para visualizar as consultas.
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-footer">
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+
+                        Fechar
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================================
+         SCRIPTS
+         ======================================================== -->
+
+    <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+    </script>
+
+    <script src="index.js"></script>
+
+</body>
+</html>

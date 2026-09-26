@@ -1,0 +1,51 @@
+name: mvp2-healthcare
+
+services:
+
+  frontend:
+    build:
+      context: .
+    ports:
+      - "5500:80"
+    depends_on:
+      - bff
+
+  patient-backend:
+    build:
+      context: ../mvp2-patient-backend
+    ports:
+      - "5000:5000"
+    environment:
+      SCHEDULING_SERVICE_URL: http://patient-backend:5000
+    networks:
+      - healthcare-network
+
+  scheduling-backend:
+    build:
+      context: ../mvp2-scheduling-backend
+    ports:
+      - "5001:5000"
+    environment:
+      PATIENT_SERVICE_URL: http://patient-backend:5000
+    depends_on:
+      - patient-backend
+    networks:
+      - healthcare-network
+
+  bff:
+    build:
+      context: ../mvp2-bff
+    ports:
+      - "5002:5002"
+    environment:
+      PATIENT_BACKEND_URL: http://patient-backend:5000
+      SCHEDULING_BACKEND_URL: http://scheduling-backend:5000
+    depends_on:
+      - patient-backend
+      - scheduling-backend
+    networks:
+      - healthcare-network
+
+networks:
+  healthcare-network:
+    driver: bridge
